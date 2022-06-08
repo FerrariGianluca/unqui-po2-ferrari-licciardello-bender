@@ -2,16 +2,17 @@ package tpfinal;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
+import java.util.Observer;
 import java.util.stream.Collectors;
 
-public class ZonaDeCobertura extends Observable {
+public class ZonaDeCobertura  {
 		
 		private AppVinchuca app;
 	    private Ubicacion epicentro;
 		private double radio;
 		private String nombre;
 		private List<Muestra> muestras;
+		private List<Observador> observers;
 		
 		public ZonaDeCobertura(Ubicacion e, double r, String n) {
 			epicentro = e;
@@ -60,4 +61,17 @@ public class ZonaDeCobertura extends Observable {
 			return this.epicentro.distanciaCon(z.getEpicentro()) <= this.radio + z.getRadio();
 		}
 		
+		public void agregarObserver(Observador observer) {
+			observers.add(observer);
+			
+		}
+		public void sacarObserver(Observador observer) {
+			observers.remove(observer);
+		}
+		public void notifyNuevaMuestra() {
+			this.observers.forEach(o -> o.updateNuevaMuestra(this));
+		}
+		public void notifyMuestraValidada() {
+			this.observers.forEach(o -> o.updateMuestraValidada(this));
+		}
 }
