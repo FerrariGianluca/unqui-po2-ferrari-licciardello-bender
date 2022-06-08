@@ -3,6 +3,7 @@ package tpfinal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,6 +11,7 @@ public class AppVinchuca {
 
 	private List<Muestra> muestras;
 	private List<Usuario> usuarios;
+	private List<ZonaDeCobertura> zonas;
 	
 	public void agregarMuestra(Muestra muestra) {
 		muestras.add(muestra);
@@ -56,6 +58,10 @@ public class AppVinchuca {
 
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
+	}
+
+	public List<ZonaDeCobertura> getZonas() {
+		return this.zonas;
 	}
 	
 	
