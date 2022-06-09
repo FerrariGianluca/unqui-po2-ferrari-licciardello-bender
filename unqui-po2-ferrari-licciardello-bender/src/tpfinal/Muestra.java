@@ -72,12 +72,16 @@ public class Muestra {
 		this.opiniones = opiniones;
 	}
 	
-	public Muestra(String especie, Opinion resultadoActual, String fotoVinchuca, Ubicacion ubicacion, Usuario usuario) {
-		this.especie = especie;
+	public Muestra(Opinion resultadoActual, String fotoVinchuca, Ubicacion ubicacion, Usuario usuario) {
 		this.resultadoActual = resultadoActual;
 		this.fotoVinchuca = fotoVinchuca;
 		this.ubicacion = ubicacion;
 		this.usuario = usuario;
+		this.estado = new EstadoMuestraBasico(this);
+		this.experto = new EstadoMuestraExperto(this);
+		this.cerrado = new EstadoMuestraExperto(this);
+		this.inicial = new EstadoMuestraBasico(this);
+		this.opiniones = new ArrayList<Opinion>();
 	}
 
 	public void opinionExperto(Opinion opinion){

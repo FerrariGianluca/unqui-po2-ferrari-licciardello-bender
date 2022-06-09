@@ -7,7 +7,7 @@ public enum Opinion{
 	VinchucaInfestans, VinchucaSordida, VinchucaGuasayana, ChincheFoliada, PhtiaChinche, Ninguna, ImagenPocoClara;
 		
 	private LocalDate fechaDeOpinion;
-
+	
 	public LocalDate getFechaDeOpinion() {
 		return fechaDeOpinion;
 	}
