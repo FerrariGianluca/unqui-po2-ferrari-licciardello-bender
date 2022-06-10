@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public enum Opinion{
 	
-	VinchucaInfestans, VinchucaSordida, VinchucaGuasayana, ChincheFoliada, PhtiaChinche, Ninguna, ImagenPocoClara;
+	VinchucaInfestans, VinchucaSordida, VinchucaGuasayana, ChincheFoliada, PhtiaChinche, Ninguna, ImagenPocoClara, NoDefinido;
 		
 	private LocalDate fechaDeOpinion;
 	

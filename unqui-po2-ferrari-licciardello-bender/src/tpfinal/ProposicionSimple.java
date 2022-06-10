@@ -7,17 +7,14 @@ import java.util.stream.Collectors;
 public class ProposicionSimple implements Filtro{
 
 	private List<Muestra> muestras;
+	private Condicion condicion;
 	
-	public List<Muestra> operation(LocalDate fecha){
-		return muestras.stream().filter(m -> m.getFechaDeEnvio().isAfter(fecha)).collect(Collectors.toList());
+	public ProposicionSimple(Condicion condicion) {
+		this.condicion = condicion;
 	}
 	
-	public List<Muestra> operationOR(){
-		for (Filtro f: filtros) {
-			f.operationOR();
-		}
+	public List<Muestra> muestrasQueCumplen(){
+		return muestras.stream().filter(m -> condicion.cumpleCon(m)).collect(Collectors.toList());
 	}
-	
-	public List<Muestra> operationAND();
 	
 }

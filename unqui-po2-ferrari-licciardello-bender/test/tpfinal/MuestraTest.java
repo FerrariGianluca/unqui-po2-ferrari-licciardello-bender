@@ -42,4 +42,18 @@ class MuestraTest {
 		EstadoMuestra estado = new EstadoMuestraExperto(muestra);
 		assertEquals(muestra.getEstado().getClass(), estado.getClass());
 	}
+	
+	@Test
+	public void cuandoAlguienOpinaEstaOpinionSeAgregar() {
+		muestra.agregarOpinion(opinion);
+		assertEquals(muestra.getOpiniones().size(), 1);
+	}
+	
+	@Test
+	public void testResultadoActual() {
+		Opinion opinion2 = Opinion.ChincheFoliada;
+		muestra.agregarOpinion(opinion);
+		muestra.agregarOpinion(opinion2);
+		assertEquals(muestra.getResultadoActual(), Opinion.NoDefinido);
+	}
 }

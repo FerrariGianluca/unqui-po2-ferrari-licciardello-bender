@@ -20,6 +20,19 @@ public class Muestra {
 	private boolean opinoExperto;
 	private LocalDate fechaDeEnvio;
 	
+	//resultadoActual se inicializa con la opinion del usuario que sube la muestra
+	public Muestra(Opinion resultadoActual, String fotoVinchuca, Ubicacion ubicacion, Usuario usuario) {
+		this.resultadoActual = resultadoActual;
+		this.fotoVinchuca = fotoVinchuca;
+		this.ubicacion = ubicacion;
+		this.usuario = usuario;
+		this.estado = new EstadoMuestraBasico(this);
+		this.experto = new EstadoMuestraExperto(this);
+		this.cerrado = new EstadoMuestraExperto(this);
+		this.inicial = new EstadoMuestraBasico(this);
+		this.opiniones = new ArrayList<Opinion>();
+	}
+	
 	public void agregarOpinion(Opinion opinion) {
 		getOpiniones().add(opinion);
 	}
@@ -70,18 +83,6 @@ public class Muestra {
 
 	public void setOpiniones(ArrayList<Opinion> opiniones) {
 		this.opiniones = opiniones;
-	}
-	
-	public Muestra(Opinion resultadoActual, String fotoVinchuca, Ubicacion ubicacion, Usuario usuario) {
-		this.resultadoActual = resultadoActual;
-		this.fotoVinchuca = fotoVinchuca;
-		this.ubicacion = ubicacion;
-		this.usuario = usuario;
-		this.estado = new EstadoMuestraBasico(this);
-		this.experto = new EstadoMuestraExperto(this);
-		this.cerrado = new EstadoMuestraExperto(this);
-		this.inicial = new EstadoMuestraBasico(this);
-		this.opiniones = new ArrayList<Opinion>();
 	}
 
 	public void opinionExperto(Opinion opinion){
