@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 class MuestraTest {
 
-	private Opinion opinion;
+	private Opinion opinion; //fdsafsdfsdf
 	private Ubicacion ubicacion;
 	private Usuario usuario;
 	private Muestra muestra;
