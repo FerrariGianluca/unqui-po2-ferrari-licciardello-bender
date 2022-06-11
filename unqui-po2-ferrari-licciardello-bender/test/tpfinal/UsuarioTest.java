@@ -48,6 +48,7 @@ class UsuarioTest {
 		usuario.opinar(muestra, Opinion.ChincheFoliada);
 		assertEquals(muestra.getResultadoActual(), Opinion.ChincheFoliada);
 		assertEquals(muestra.getCantOpiniones().get(Opinion.ChincheFoliada), 2);
+		assertEquals(usuario.getOpiniones().size(), 1);
 	}
 	
 	@Test
@@ -60,5 +61,7 @@ class UsuarioTest {
 		usuario1.enviarMuestra(muestra);
 		assertEquals(app.cantMuestrasEnviadasEnLosUltimos30Dias(usuario1), 1);
 	}
+	
+	
 	
 }

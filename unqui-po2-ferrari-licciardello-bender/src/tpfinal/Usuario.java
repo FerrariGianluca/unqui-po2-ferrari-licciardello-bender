@@ -36,14 +36,11 @@ public class Usuario {
 	
 	public void opinar(Muestra muestra, Opinion opinion) {
 		estado.manejarOpinion(muestra, opinion);
+		opiniones.add(opinion);
 	}
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public EstadoUsuario getEstado() {
@@ -58,25 +55,19 @@ public class Usuario {
 		return aplicacion;
 	}
 
-	public void setAplicacion(AppVinchuca aplicacion) {
-		this.aplicacion = aplicacion;
-	}
+	
 
 	public ArrayList<Opinion> getOpiniones() {
 		return opiniones;
 	}
 
-	public void setOpiniones(ArrayList<Opinion> opiniones) {
-		this.opiniones = opiniones;
-	}
+	
 
 	public ArrayList<Muestra> getMuestrasEnviadas() {
 		return muestrasEnviadas;
 	}
 
-	public void setMuestrasEnviadas(ArrayList<Muestra> muestrasEnviadas) {
-		this.muestrasEnviadas = muestrasEnviadas;
-	}
+	
 	
 	
 	

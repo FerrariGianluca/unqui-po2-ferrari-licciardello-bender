@@ -14,8 +14,8 @@ public abstract class EstadoMuestra {
 		return muestra;
 	}
 
-	public void setMuestra(Muestra muestra) {
-		this.muestra = muestra;
-	}	
+//	public void setMuestra(Muestra muestra) {
+//		this.muestra = muestra;
+//	}	
 	
 }

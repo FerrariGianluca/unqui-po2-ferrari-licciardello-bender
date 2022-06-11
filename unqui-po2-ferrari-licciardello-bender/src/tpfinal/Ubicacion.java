@@ -13,12 +13,10 @@ public class Ubicacion {
         this.nombre = nombre;
         this.latitud  = latitud;
         this.longitud = longitud;
+        
     }
     
-    
-    
-    
-    
+   
     public double distanciaCon(Ubicacion ubicacion) {
     	double lat1 = Math.toRadians(this.latitud);
     	double lon1 = Math.toRadians(this.longitud);
@@ -38,7 +36,7 @@ public class Ubicacion {
     }
     
     public boolean tieneAlgunaUbicacionAMenosDe(List<Ubicacion> ubicaciones, double distancia) {
-    	return ubicaciones.stream().anyMatch(u -> this.distanciaCon(u) >= distancia);
+    	return ubicaciones.stream().anyMatch(u -> this.distanciaCon(u) <= distancia);
     }
 }
 
