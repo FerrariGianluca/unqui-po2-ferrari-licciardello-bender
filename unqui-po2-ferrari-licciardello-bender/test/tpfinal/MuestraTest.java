@@ -23,6 +23,7 @@ class MuestraTest {
 
 	@Test
 	public void testMuestraBienInicializada() {
+		assertEquals(muestra.getCantOpiniones().get(opinion), 1);
 		assertEquals(muestra.getFotoVinchuca(), "foto");
 		assertEquals(muestra.getResultadoActual(), opinion);
 		assertEquals(muestra.getUbicacion(), ubicacion);
@@ -46,7 +47,7 @@ class MuestraTest {
 	@Test
 	public void cuandoAlguienOpinaEstaOpinionSeAgregar() {
 		muestra.agregarOpinion(opinion);
-		assertEquals(muestra.getOpiniones().size(), 1);
+		assertEquals(muestra.getOpiniones().size(), 2);
 	}
 	
 	@Test
