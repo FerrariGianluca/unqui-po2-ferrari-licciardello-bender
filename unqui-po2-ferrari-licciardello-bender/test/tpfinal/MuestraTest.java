@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 class MuestraTest {
 
-	private Opinion opinion; //fdsafsdfsdf
+	private Opinion opinion; 
 	private Ubicacion ubicacion;
 	private Usuario usuario;
 	private Muestra muestra;
@@ -45,6 +45,14 @@ class MuestraTest {
 		Opinion opinionExperto = Opinion.VinchucaGuasayana;
 		muestra.opinionExperto(opinionExperto);
 		assertEquals(muestra.getOpinionExperto(), opinionExperto);
+	}
+	
+	@Test
+	public void testSetters() {
+		muestra.setResultadoActual(opinion);
+		assertEquals(muestra.getResultadoActual(), opinion);
+		muestra.opinionBasico(opinion);
+		assertEquals(muestra.getOpiniones().size(), 2);
 	}
 	
 	@Test
@@ -86,5 +94,5 @@ class MuestraTest {
 		assertEquals(muestra.getResultadoActual(), Opinion.NoDefinido);
 	}
 	
-	//
+	
 }

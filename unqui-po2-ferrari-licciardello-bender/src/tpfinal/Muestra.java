@@ -62,18 +62,13 @@ public class Muestra {
 		return inicial;
 	}
 
-	public void setInicial(EstadoMuestra inicial) {
-		this.inicial = inicial;
-	}
+	
 
 	public EstadoMuestra getExperto() {
 		return experto;
 	}
 
-	public void setExperto(EstadoMuestra experto) {
-		this.experto = experto;
-	}
-
+	
 	public EstadoMuestra getCerrado() {
 		return cerrado;
 	}
@@ -94,9 +89,7 @@ public class Muestra {
 		this.opinoExperto = opinoExperto;
 	}
 
-	public void setCerrado(EstadoMuestra cerrado) {
-		this.cerrado = cerrado;
-	}
+
 
 	public ArrayList<Opinion> getOpiniones() {
 		return opiniones;

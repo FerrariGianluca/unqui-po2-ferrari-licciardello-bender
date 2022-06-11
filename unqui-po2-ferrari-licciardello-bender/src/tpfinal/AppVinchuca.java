@@ -14,6 +14,12 @@ public class AppVinchuca {
 	private List<ZonaDeCobertura> zonas;
 	private Filtro filtro;
 	
+	public AppVinchuca() {
+		muestras = new ArrayList<Muestra>();
+		usuarios = new ArrayList<Usuario>();
+		zonas = new ArrayList<ZonaDeCobertura>();
+	}
+	
 	public void agregarMuestra(Muestra muestra) {
 		muestras.add(muestra);
 	}

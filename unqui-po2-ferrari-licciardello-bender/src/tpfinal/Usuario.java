@@ -5,24 +5,32 @@ import java.util.ArrayList;
 public class Usuario {
 
 	private int id;
+	private EstadoUsuarioBasico estadoBasico;
+	private EstadoUsuarioExperto estadoExperto;
 	private EstadoUsuario estado;
 	private AppVinchuca aplicacion;
 	private ArrayList<Opinion> opiniones;
 	private ArrayList<Muestra> muestrasEnviadas; 
 	
-	public Usuario(int id) {
+	public Usuario(int id ) {
+		this.estado = new EstadoUsuarioBasico(this) ;
 		this.id = id;
+		this.aplicacion = new AppVinchuca();
+		this.opiniones = new ArrayList<Opinion>();
+		this.muestrasEnviadas = new ArrayList<Muestra>();
 	}
 	
+	
 	public void subirCategoria() {
-		setEstado(new EstadoUsuarioExperto());
+		setEstado(new EstadoUsuarioExperto(this));
 	}
 	
 	public void bajarCategoria() {
-		setEstado(new EstadoUsuarioBasico());
+		setEstado(new EstadoUsuarioBasico(this));
 	}
 	
 	public void enviarMuestra(Muestra muestra) {
+		getMuestrasEnviadas().add(muestra);
 		getAplicacion().agregarMuestra(muestra);
 	}
 	
