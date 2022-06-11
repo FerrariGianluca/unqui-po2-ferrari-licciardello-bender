@@ -114,7 +114,7 @@ public class Muestra {
 	}
 	
 	public boolean tieneAlgunaMuestraAMenosDe(List<Muestra> muestras, double distancia) {
-		return muestras.stream().anyMatch(m -> this.getUbicacion().distanciaCon(m.getUbicacion()) >= distancia);
+		return muestras.stream().anyMatch(m -> this.getUbicacion().distanciaCon(m.getUbicacion()) <= distancia);
 	}
 	
 	public EstadoMuestra getEstado() {
