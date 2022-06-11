@@ -85,4 +85,6 @@ class MuestraTest {
 		muestra.agregarOpinion(opinion2);
 		assertEquals(muestra.getResultadoActual(), Opinion.NoDefinido);
 	}
+	
+	//
 }

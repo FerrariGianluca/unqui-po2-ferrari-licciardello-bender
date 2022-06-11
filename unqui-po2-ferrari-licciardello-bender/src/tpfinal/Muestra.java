@@ -145,5 +145,6 @@ public class Muestra {
 	public String getFotoVinchuca() {
 		return fotoVinchuca;
 	}
+	//
 	
 }
