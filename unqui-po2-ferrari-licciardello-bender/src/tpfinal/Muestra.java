@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Muestra {
-
+    private String algo;
 	private Opinion resultadoActual;
 	private String fotoVinchuca;
 	private Ubicacion ubicacion;
