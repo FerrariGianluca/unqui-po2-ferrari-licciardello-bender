@@ -2,6 +2,7 @@ package tpfinal;
 
 public class CondicionNivelVerificacion {
 
+	
 	private EstadoMuestra estado;
 	
 	public CondicionNivelVerificacion(EstadoMuestra estado) {
