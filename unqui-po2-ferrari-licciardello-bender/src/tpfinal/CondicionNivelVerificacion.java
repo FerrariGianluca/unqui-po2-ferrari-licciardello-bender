@@ -1,6 +1,6 @@
 package tpfinal;
 
-public class CondicionNivelVerificacion {
+public class CondicionNivelVerificacion extends Condicion{
 
 	
 	private EstadoMuestra estado;
