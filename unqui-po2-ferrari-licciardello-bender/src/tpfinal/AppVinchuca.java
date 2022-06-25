@@ -71,5 +71,13 @@ public class AppVinchuca {
 		return this.zonas;
 	}
 	
-	
+	public ArrayList<Muestra> busquedaPorFiltro(Filtro filtro){
+		ArrayList<Muestra> muestrasFiltradas = new ArrayList<>();
+		for (Muestra m : muestras){
+			if (filtro.cumpleCon(m)){
+				muestrasFiltradas.add(m);
+			}
+		}
+		return muestrasFiltradas;
+	}
 }

@@ -4,29 +4,24 @@ import java.util.ArrayList;
 
 public class Usuario {
 
-	private int id;
-	private EstadoUsuarioBasico estadoBasico;
-	private EstadoUsuarioExperto estadoExperto;
 	private EstadoUsuario estado;
 	private AppVinchuca aplicacion;
 	private ArrayList<Opinion> opiniones;
 	private ArrayList<Muestra> muestrasEnviadas; 
 	
-	public Usuario(int id ) {
-		this.estado = new EstadoUsuarioBasico(this) ;
-		this.id = id;
+	public Usuario() {
+		this.estado = new EstadoUsuarioBasico() ;
 		this.aplicacion = new AppVinchuca();
 		this.opiniones = new ArrayList<Opinion>();
 		this.muestrasEnviadas = new ArrayList<Muestra>();
 	}
 	
-	
 	public void subirCategoria() {
-		setEstado(new EstadoUsuarioExperto(this));
+		setEstado(new EstadoUsuarioExperto());
 	}
 	
 	public void bajarCategoria() {
-		setEstado(new EstadoUsuarioBasico(this));
+		setEstado(new EstadoUsuarioBasico());
 	}
 	
 	public void enviarMuestra(Muestra muestra) {
@@ -37,10 +32,6 @@ public class Usuario {
 	public void opinar(Muestra muestra, Opinion opinion) {
 		estado.manejarOpinion(muestra, opinion);
 		opiniones.add(opinion);
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	public EstadoUsuario getEstado() {
@@ -55,20 +46,11 @@ public class Usuario {
 		return aplicacion;
 	}
 
-	
-
 	public ArrayList<Opinion> getOpiniones() {
 		return opiniones;
 	}
 
-	
-
 	public ArrayList<Muestra> getMuestrasEnviadas() {
 		return muestrasEnviadas;
 	}
-
-	
-	
-	
-	
 }

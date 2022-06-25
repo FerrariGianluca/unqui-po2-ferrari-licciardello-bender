@@ -1,28 +1,23 @@
 package tpfinal;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ProposicionCompuesta extends Filtro{
+public abstract class ProposicionCompuesta implements Filtro{
 
 	private ArrayList<Filtro> filtros;
 	
-	public ProposicionCompuesta(Condicion condicion, AppVinchuca app) {
-		super(condicion, app);
+	public ProposicionCompuesta() {
 		filtros = new ArrayList<Filtro>();
-	
 	}
 	
-	public List<Muestra> muestrasQueCumplen(){
-		
-	}
+	public abstract boolean cumpleCon(Muestra muestra);
 	
 	public void add(Filtro filtro) {
-		filtros.add(filtro);
+		this.filtros.add(filtro);
 	}
 	
 	public void remove(Filtro filtro) {
-		filtros.remove(filtro);
+		this.filtros.remove(filtro);
 	}
 
 	public ArrayList<Filtro> getFiltros() {

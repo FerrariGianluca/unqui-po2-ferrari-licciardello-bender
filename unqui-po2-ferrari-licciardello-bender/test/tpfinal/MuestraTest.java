@@ -72,7 +72,7 @@ class MuestraTest {
 	@Test
 	public void cuandoAlguienOpinaEstaOpinionSeAgregar() {
 		muestra.agregarOpinion(opinion);
-		assertEquals(muestra.getOpiniones().size(), 2);
+		assertEquals(muestra.getCantOpiniones().values().size(), 2);
 	}
 	
 	@Test
@@ -88,9 +88,7 @@ class MuestraTest {
 	
 	@Test
 	public void testResultadoActual() {
-		Opinion opinion2 = Opinion.ChincheFoliada;
 		muestra.agregarOpinion(opinion);
-		muestra.agregarOpinion(opinion2);
 		assertEquals(muestra.getResultadoActual(), Opinion.NoDefinido);
 	}
 	

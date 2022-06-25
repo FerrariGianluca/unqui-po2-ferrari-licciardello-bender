@@ -3,17 +3,23 @@ package tpfinal;
 public class Organizacion {
 	private Ubicacion ubicacion;
 	private int trabajadores;
+	private FuncionalidadExterna funMuestraValidada;
+	private FuncionalidadExterna funMuestraCargada;
+	
+	public Organizacion(Ubicacion ubi, int cantTrab) {
+		ubicacion = ubi;
+		trabajadores = cantTrab;
+	}
 	
 	public enum TipoDeOrganizacion{
 		Salud, Educativa, Cultural, Asistencia
 	}
-	public void update() {
-		
+	
+	public void updateNuevaMuestra(ZonaDeCobertura z) {
+		funMuestraCargada.nuevoEvento(this);
 	}
-	public Muestra updateNuevaMuestra(ZonaDeCobertura z) {
-		
-	}
-	public Muestra updateMuestraValidada(ZonaDeCobertura z) {
-		
+	
+	public void updateMuestraValidada(ZonaDeCobertura z) {
+		funMuestraValidada.nuevoEvento(this);
 	}
 }
