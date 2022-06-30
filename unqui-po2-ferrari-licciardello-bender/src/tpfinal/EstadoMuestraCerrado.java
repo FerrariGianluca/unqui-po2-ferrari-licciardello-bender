@@ -2,9 +2,9 @@ package tpfinal;
 
 public class EstadoMuestraCerrado extends EstadoMuestra{
 	
-	private Opinion opinionFinal;
+	private TipoOpinion opinionFinal;
 	
-	public EstadoMuestraCerrado(Muestra muestra, Opinion opinion) {
+	public EstadoMuestraCerrado(Muestra muestra, TipoOpinion opinion) {
 		super(muestra);
 		opinionFinal = opinion;
 	}
@@ -13,7 +13,7 @@ public class EstadoMuestraCerrado extends EstadoMuestra{
 		System.out.println("Esta muestra se encuentra cerrada, no se permiten opiniones");
 	}
 	
-	public Opinion obtenerResultadoActual() {
+	public TipoOpinion obtenerResultadoActual() {
 		return opinionFinal;
 	}
 	

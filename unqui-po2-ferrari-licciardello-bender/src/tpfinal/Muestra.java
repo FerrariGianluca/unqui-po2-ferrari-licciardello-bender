@@ -2,12 +2,9 @@ package tpfinal;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class Muestra {
 	private String fotoVinchuca;
@@ -15,7 +12,7 @@ public class Muestra {
 	private Usuario usuario;
 	private EstadoMuestra estado;
 	private LocalDate fechaDeEnvio;
-	private Map<Opinion, Integer> cantOpiniones;
+	private Map<TipoOpinion, Integer> cantOpiniones;
 	private ArrayList<Opinion> opiniones;
 	
 	//resultadoActual se inicializa con la opinion del usuario que sube la muestra
@@ -24,25 +21,25 @@ public class Muestra {
 		this.ubicacion = ubicacion;
 		this.usuario = usuario;
 		this.estado = new EstadoMuestraBasico(this);
-		this.cantOpiniones = new HashMap<Opinion, Integer>();
-		cantOpiniones.put(Opinion.VinchucaGuasayana, 0);
-		cantOpiniones.put(Opinion.VinchucaInfestans, 0);
-		cantOpiniones.put(Opinion.VinchucaSordida, 0);
-		cantOpiniones.put(Opinion.PhtiaChinche, 0);
-		cantOpiniones.put(Opinion.ChincheFoliada, 0);
-		cantOpiniones.put(Opinion.ImagenPocoClara, 0);
-		cantOpiniones.put(Opinion.Ninguna, 0);
+		this.cantOpiniones = new HashMap<TipoOpinion, Integer>();
+		cantOpiniones.put(TipoOpinion.VinchucaGuasayana, 0);
+		cantOpiniones.put(TipoOpinion.VinchucaInfestans, 0);
+		cantOpiniones.put(TipoOpinion.VinchucaSordida, 0);
+		cantOpiniones.put(TipoOpinion.PhtiaChinche, 0);
+		cantOpiniones.put(TipoOpinion.ChincheFoliada, 0);
+		cantOpiniones.put(TipoOpinion.ImagenPocoClara, 0);
+		cantOpiniones.put(TipoOpinion.Ninguna, 0);
 		this.fechaDeEnvio = LocalDate.now();
 		this.opiniones = new ArrayList<>();
 		agregarOpinion(opinionInicial);
 	}
 	
-	public Map<Opinion, Integer> getCantOpiniones() {
+	public Map<TipoOpinion, Integer> getCantOpiniones() {
 		return cantOpiniones;
 	}
 
 	public void agregarOpinion(Opinion opinion) {
-		cantOpiniones.put(opinion, cantOpiniones.get(opinion) + 1);
+		cantOpiniones.put(opinion.getTipoOpinion(), cantOpiniones.get(opinion.getTipoOpinion()) + 1);
 		opiniones.add(opinion);
 	}
 
@@ -75,7 +72,7 @@ public class Muestra {
 		this.estado = estado;
 	}
 
-	public Opinion getResultadoActual() {
+	public TipoOpinion getResultadoActual() {
 		return estado.obtenerResultadoActual();
 	}
 

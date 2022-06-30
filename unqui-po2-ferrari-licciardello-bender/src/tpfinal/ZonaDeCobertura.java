@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Observer;
 import java.util.stream.Collectors;
 
-public class ZonaDeCobertura  {
+public class ZonaDeCobertura {
 		
 		private AppVinchuca app;
 	    private Ubicacion epicentro;
 		private double radio;
 		private String nombre;
 		private List<Muestra> muestras;
-		private List<Observador> observers;
+		private ArrayList<Observador> observers;
 		
 		public ZonaDeCobertura(Ubicacion e, double r, String n) {
 			epicentro = e;
@@ -75,5 +75,11 @@ public class ZonaDeCobertura  {
 		
 		public void notifyMuestraValidada() {
 			this.observers.forEach(o -> o.updateMuestraValidada(this));
+		}
+		
+		public void update(Muestra muestra){
+			if (muestra.getUbicacion().distanciaCon(epicentro) <= radio) {
+				muestras.add(muestra);
+			}
 		}
 }

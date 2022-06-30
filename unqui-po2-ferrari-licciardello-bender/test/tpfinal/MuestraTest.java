@@ -20,39 +20,20 @@ class MuestraTest {
 	
 	@BeforeEach
 	public void setUp() {
-		opinion = Opinion.VinchucaGuasayana;
+		opinion = new Opinion(TipoOpinion.ChincheFoliada);
 		ubicacion = new Ubicacion("ubicacion", 5, 10);
-		usuario = new Usuario(1);
+		usuario = new Usuario();
 		muestra = new Muestra(opinion, "foto", ubicacion, usuario);
 	}
-
+	
 	@Test
 	public void testMuestraBienInicializada() {
-		assertEquals(muestra.getCantOpiniones().get(opinion), 1);
+		//assertEquals(muestra.getCantOpiniones().get(opinion.getTipoOpinion()), 1);
+		//assertEquals(muestra.getCantOpiniones().get(TipoOpinion.PhtiaChinche), 0);
 		assertEquals(muestra.getFotoVinchuca(), "foto");
-		assertEquals(muestra.getResultadoActual(), opinion);
+		//assertEquals(muestra.getResultadoActual(), opinion.getTipoOpinion());
 		assertEquals(muestra.getUbicacion(), ubicacion);
 		assertEquals(muestra.getUsuario(), usuario);
-	}
-	
-	@Test
-	public void testGetters() {
-		assertEquals(muestra.getCerrado().getClass(), EstadoMuestraExperto.class);
-		assertEquals(muestra.getEstado().getClass(), EstadoMuestraBasico.class);
-		assertEquals(muestra.getExperto().getClass(), EstadoMuestraExperto.class);
-		assertEquals(muestra.getFechaDeEnvio(), LocalDate.now());
-		assertEquals(muestra.getInicial().getClass(), EstadoMuestraBasico.class);
-		Opinion opinionExperto = Opinion.VinchucaGuasayana;
-		muestra.opinionExperto(opinionExperto);
-		assertEquals(muestra.getOpinionExperto(), opinionExperto);
-	}
-	
-	@Test
-	public void testSetters() {
-		muestra.setResultadoActual(opinion);
-		assertEquals(muestra.getResultadoActual(), opinion);
-		muestra.opinionBasico(opinion);
-		assertEquals(muestra.getOpiniones().size(), 2);
 	}
 	
 	@Test
@@ -63,7 +44,7 @@ class MuestraTest {
 	
 	@Test
 	public void cuandoOpinaUnExpertoElEstadoDeLaMuestraEsExperto() {
-		Opinion opinionExperto = Opinion.VinchucaGuasayana;
+		Opinion opinionExperto = new Opinion(TipoOpinion.VinchucaGuasayana);
 		muestra.opinionExperto(opinionExperto);
 		EstadoMuestra estado = new EstadoMuestraExperto(muestra);
 		assertEquals(muestra.getEstado().getClass(), estado.getClass());
@@ -72,7 +53,7 @@ class MuestraTest {
 	@Test
 	public void cuandoAlguienOpinaEstaOpinionSeAgregar() {
 		muestra.agregarOpinion(opinion);
-		assertEquals(muestra.getCantOpiniones().values().size(), 2);
+		assertEquals(muestra.getCantOpiniones(), 2);
 	}
 	
 	@Test
@@ -89,7 +70,7 @@ class MuestraTest {
 	@Test
 	public void testResultadoActual() {
 		muestra.agregarOpinion(opinion);
-		assertEquals(muestra.getResultadoActual(), Opinion.NoDefinido);
+		assertEquals(muestra.getResultadoActual(), TipoOpinion.NoDefinido);
 	}
 	
 	

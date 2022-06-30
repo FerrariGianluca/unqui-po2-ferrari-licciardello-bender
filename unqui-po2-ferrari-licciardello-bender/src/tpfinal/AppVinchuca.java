@@ -3,16 +3,14 @@ package tpfinal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AppVinchuca {
+public class AppVinchuca{
 
 	private List<Muestra> muestras;
 	private List<Usuario> usuarios;
 	private List<ZonaDeCobertura> zonas;
-	private Filtro filtro;
 	
 	public AppVinchuca() {
 		muestras = new ArrayList<Muestra>();
@@ -22,6 +20,7 @@ public class AppVinchuca {
 	
 	public void agregarMuestra(Muestra muestra) {
 		muestras.add(muestra);
+		zonas.forEach(o -> o.update(muestra));
 	}
 	
 	public void agregarUsuario(Usuario usuario) {
@@ -80,4 +79,5 @@ public class AppVinchuca {
 		}
 		return muestrasFiltradas;
 	}
+	
 }

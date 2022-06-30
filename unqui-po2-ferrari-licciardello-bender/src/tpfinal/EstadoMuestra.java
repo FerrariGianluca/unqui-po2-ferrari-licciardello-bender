@@ -14,6 +14,6 @@ public abstract class EstadoMuestra {
 		return muestra;
 	}
 	
-	public abstract Opinion obtenerResultadoActual();
+	public abstract TipoOpinion obtenerResultadoActual();
 	
 }
