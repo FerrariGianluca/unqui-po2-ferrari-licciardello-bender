@@ -2,12 +2,10 @@ package tpfinal;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 import java.util.stream.Collectors;
 
 public class ZonaDeCobertura {
 		
-		private AppVinchuca app;
 	    private Ubicacion epicentro;
 		private double radio;
 		private String nombre;
@@ -53,8 +51,8 @@ public class ZonaDeCobertura {
 			this.muestras = muestras;
 		}
 		
-		public List<ZonaDeCobertura> zonasQueSolapan(){
-			return this.app.getZonas().stream().filter(z -> z.solapaConUnaZona(this)).collect(Collectors.toList());
+		public List<ZonaDeCobertura> zonasQueSolapan(ArrayList<ZonaDeCobertura> zonas){
+			return zonas.stream().filter(z -> z.solapaConUnaZona(this)).collect(Collectors.toList());
 		}
 		
 		public boolean solapaConUnaZona(ZonaDeCobertura z) {
