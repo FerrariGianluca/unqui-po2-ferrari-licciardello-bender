@@ -2,9 +2,11 @@ package tpfinal;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Muestra {
 	private String fotoVinchuca;
@@ -12,16 +14,12 @@ public class Muestra {
 	private Usuario usuario;
 	private EstadoMuestra estado;
 	private LocalDate fechaDeEnvio;
-	private Map<TipoOpinion, Integer> cantOpiniones;
+	private EnumMap<TipoOpinion, Integer> cantOpiniones;
+	//private Map<TipoOpinion, Integer> cantOpiniones;
 	private ArrayList<Opinion> opiniones;
 	
-	//resultadoActual se inicializa con la opinion del usuario que sube la muestra
-	public Muestra(Opinion opinionInicial, String fotoVinchuca, Ubicacion ubicacion, Usuario usuario) {
-		this.fotoVinchuca = fotoVinchuca;
-		this.ubicacion = ubicacion;
-		this.usuario = usuario;
-		this.estado = new EstadoMuestraBasico(this);
-		this.cantOpiniones = new HashMap<TipoOpinion, Integer>();
+	private EnumMap<TipoOpinion, Integer> cantidadDeOpiniones(){
+		cantOpiniones = new EnumMap<>(TipoOpinion.class);
 		cantOpiniones.put(TipoOpinion.VinchucaGuasayana, 0);
 		cantOpiniones.put(TipoOpinion.VinchucaInfestans, 0);
 		cantOpiniones.put(TipoOpinion.VinchucaSordida, 0);
@@ -29,17 +27,29 @@ public class Muestra {
 		cantOpiniones.put(TipoOpinion.ChincheFoliada, 0);
 		cantOpiniones.put(TipoOpinion.ImagenPocoClara, 0);
 		cantOpiniones.put(TipoOpinion.Ninguna, 0);
+		for (Opinion o : opiniones) {
+			cantOpiniones.put(o.getTipoOpinion(), cantOpiniones.get(o.getTipoOpinion()) + 1);
+		}
+		return cantOpiniones;
+	}
+	
+	//resultadoActual se inicializa con la opinion del usuario que sube la muestra
+	public Muestra(Opinion opinionInicial, String fotoVinchuca, Ubicacion ubicacion, Usuario usuario) {
+		this.fotoVinchuca = fotoVinchuca;
+		this.ubicacion = ubicacion;
+		this.usuario = usuario;
+		this.estado = new EstadoMuestraBasico(this);
+		this.cantOpiniones = cantidadDeOpiniones();
 		this.fechaDeEnvio = LocalDate.now();
 		this.opiniones = new ArrayList<>();
 		agregarOpinion(opinionInicial);
 	}
 	
-	public Map<TipoOpinion, Integer> getCantOpiniones() {
+	public EnumMap<TipoOpinion, Integer> getCantOpiniones() {
 		return cantOpiniones;
 	}
 
 	public void agregarOpinion(Opinion opinion) {
-		cantOpiniones.put(opinion.getTipoOpinion(), cantOpiniones.get(opinion.getTipoOpinion()) + 1);
 		opiniones.add(opinion);
 	}
 

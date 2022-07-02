@@ -19,7 +19,7 @@ class MuestraTest {
 	private Muestra muestra;
 	
 	@BeforeEach
-	public void setUp() {
+	public void setUp() throws Exception{
 		opinion = new Opinion(TipoOpinion.ChincheFoliada);
 		ubicacion = new Ubicacion("ubicacion", 5, 10);
 		usuario = new Usuario();
@@ -28,10 +28,10 @@ class MuestraTest {
 	
 	@Test
 	public void testMuestraBienInicializada() {
-		//assertEquals(muestra.getCantOpiniones().get(opinion.getTipoOpinion()), 1);
-		//assertEquals(muestra.getCantOpiniones().get(TipoOpinion.PhtiaChinche), 0);
+		assertEquals(muestra.getCantOpiniones().get(opinion.getTipoOpinion()), 1);
+		assertEquals(muestra.getCantOpiniones().get(TipoOpinion.PhtiaChinche), 0);
 		assertEquals(muestra.getFotoVinchuca(), "foto");
-		//assertEquals(muestra.getResultadoActual(), opinion.getTipoOpinion());
+		assertEquals(muestra.getResultadoActual(), opinion.getTipoOpinion());
 		assertEquals(muestra.getUbicacion(), ubicacion);
 		assertEquals(muestra.getUsuario(), usuario);
 	}
