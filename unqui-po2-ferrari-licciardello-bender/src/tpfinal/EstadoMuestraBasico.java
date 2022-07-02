@@ -27,9 +27,4 @@ public class EstadoMuestraBasico extends EstadoMuestra{
 	public boolean puedeOpinarUnUsuarioBasico() {
 		return true;
 	}
-	
-	//public TipoOpinion obtenerResultadoActual() {
-	//	TipoOpinion opinion = getMuestra().getCantOpiniones().entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey();
-    //    return opinion;
-	//}
 }

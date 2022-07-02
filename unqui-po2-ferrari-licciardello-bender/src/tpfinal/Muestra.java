@@ -70,25 +70,6 @@ public class Muestra {
 	public void agregarOpinion(Opinion opinion) {
 		opiniones.add(opinion);
 	}
-
-/*	public void opinionExperto(Opinion opinion){
-		EstadoMuestra estado = new EstadoMuestraExperto(this);
-		if (this.estado.getClass().toString().equals(estado.getClass().toString())) {
-			estado.manejarOpinion(opinion);
-		} else {
-			setEstado(estado);
-			estado.manejarOpinion(opinion);
-		}
-	}
-	
-	public void opinionBasico(Opinion opinion) {
-		EstadoMuestra estado = new EstadoMuestraBasico(this);
-		if (this.estado.getClass().toString().equals(estado.getClass().toString())) {
-			estado.manejarOpinion(opinion);
-		} else {
-			System.out.println("No podes opinar sobre una muestra en la que ya opinó un experto");
-		}
-	}*/
 	
 	public boolean tieneAlgunaMuestraAMenosDe(List<Muestra> muestras, double distancia) {
 		return muestras.stream().anyMatch(m -> this.getUbicacion().distanciaCon(m.getUbicacion()) <= distancia);
