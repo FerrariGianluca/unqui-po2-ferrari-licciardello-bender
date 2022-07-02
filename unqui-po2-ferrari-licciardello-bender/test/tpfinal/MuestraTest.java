@@ -51,7 +51,7 @@ class MuestraTest {
 	}
 	
 	@Test
-	public void cuandoAlguienOpinaEstaOpinionSeAgregar() {
+	public void cuandoAlguienOpinaEstaOpinionSeAgrega() {
 		muestra.agregarOpinion(opinion);
 		assertEquals(muestra.getCantOpiniones(), 2);
 	}

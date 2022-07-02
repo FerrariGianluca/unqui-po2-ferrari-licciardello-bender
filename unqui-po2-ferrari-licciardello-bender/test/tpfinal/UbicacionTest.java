@@ -19,7 +19,6 @@ class UbicacionTest {
 	
 	@BeforeEach
 	public void setUp(){
-	
 		u1 = new Ubicacion("Lanus",54873428,23123123);
 		u2 = new Ubicacion("Banfield",6,8);
 		u3 = new Ubicacion("Avellaneda", 3,5);

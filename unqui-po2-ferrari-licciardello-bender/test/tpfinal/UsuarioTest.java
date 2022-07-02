@@ -17,18 +17,11 @@ class UsuarioTest {
 	
 	@BeforeEach
 	public void setUp() {
-		 usuario = new Usuario(1);
-		
-		
+		 usuario = new Usuario();
 	}
 	
 	@Test
 	void InicializacionTest() {
-		assertEquals(usuario.getId(), 1);
-	}
-
-	@Test
-	void EstadoDeUsuarioTest() {
 		assertEquals(usuario.getEstado().getClass(), EstadoUsuarioBasico.class);
 	}
 	
@@ -42,21 +35,23 @@ class UsuarioTest {
 	}
 	@Test
 	void OpinarTest() {
-		Usuario usuario1 = new Usuario(2) ;
+		Usuario usuario1 = new Usuario() ;
 		Ubicacion ubicacion = new Ubicacion("Lanus", 3,5);
-		Muestra muestra = new Muestra(Opinion.ChincheFoliada, "Foto", ubicacion,usuario1);
-		usuario.opinar(muestra, Opinion.ChincheFoliada);
-		assertEquals(muestra.getResultadoActual(), Opinion.ChincheFoliada);
-		assertEquals(muestra.getCantOpiniones().get(Opinion.ChincheFoliada), 2);
+		Opinion op = new Opinion(TipoOpinion.ChincheFoliada);
+		Muestra muestra = new Muestra(op, "Foto", ubicacion, usuario1);
+		usuario.opinar(muestra, op);
+		assertEquals(muestra.getResultadoActual(), TipoOpinion.ChincheFoliada);
+		assertEquals(muestra.getCantOpiniones().get(TipoOpinion.ChincheFoliada), 2);
 		assertEquals(usuario.getOpiniones().size(), 1);
 	}
 	
 	@Test
 	void EnviarMuestraTest() {
 		AppVinchuca app = new AppVinchuca();
-		Usuario usuario1 = new Usuario(2) ;
+		Usuario usuario1 = new Usuario();
 		Ubicacion ubicacion = new Ubicacion("Lanus", 3,5);
-		Muestra muestra = new Muestra(Opinion.ChincheFoliada, "Foto", ubicacion,usuario1);
+		Opinion op = new Opinion(TipoOpinion.ChincheFoliada);
+		Muestra muestra = new Muestra(op, "Foto", ubicacion,usuario1);
 		app.agregarUsuario(usuario1);
 		usuario1.enviarMuestra(muestra);
 		assertEquals(app.cantMuestrasEnviadasEnLosUltimos30Dias(usuario1), 1);
