@@ -42,9 +42,14 @@ class MuestraTest {
 	public void cuandoOpinaUnExpertoElEstadoDeLaMuestraEsExperto() {
 		Opinion opinionExperto = new Opinion(TipoOpinion.VinchucaGuasayana);
 		usuario.subirCategoria();
+		Usuario usuario2 = new Usuario();
+		usuario2.subirCategoria();
 		usuario.opinar(muestra, opinionExperto);
+		assertEquals(muestra.getResultadoActual(), opinionExperto.getTipoOpinion());
+		usuario2.opinar(muestra, new Opinion(TipoOpinion.ChincheFoliada));
 		EstadoMuestra estado = new EstadoMuestraExperto(muestra);
 		assertEquals(muestra.getEstado().getClass(), estado.getClass());
+		assertEquals(muestra.getResultadoActual(), TipoOpinion.NoDefinido);
 	}
 	
 	@Test
@@ -76,10 +81,29 @@ class MuestraTest {
 		EstadoMuestra estadoEsperado = new EstadoMuestraCerrado(muestra, TipoOpinion.ChincheFoliada);
 		Usuario experto1 = new Usuario();
 		Usuario experto2 = new Usuario();
+		Usuario basico = new Usuario();
 		experto1.subirCategoria();
 		experto2.subirCategoria();
 		experto1.opinar(muestra, opinionExperto);
 		experto2.opinar(muestra, opinionExperto);
+		basico.opinar(muestra, opinion);
+		assertEquals(muestra.getEstado().obtenerResultadoActual(), opinionExperto.getTipoOpinion());
+		assertEquals(muestra.getEstado().getClass(), estadoEsperado.getClass());
+	}
+	
+	@Test
+	public void cuandoUnaMuestraEstaVerificadaNoSePuedeOpinar() {
+		Opinion opinionExperto = new Opinion(TipoOpinion.VinchucaSordida);
+		EstadoMuestra estadoEsperado = new EstadoMuestraCerrado(muestra, TipoOpinion.ChincheFoliada);
+		Usuario experto1 = new Usuario();
+		Usuario experto2 = new Usuario();
+		Usuario experto3 = new Usuario();
+		experto1.subirCategoria();
+		experto2.subirCategoria();
+		experto3.subirCategoria();
+		experto1.opinar(muestra, opinionExperto);
+		experto2.opinar(muestra, opinionExperto);
+		experto3.opinar(muestra, opinionExperto);
 		assertEquals(muestra.getEstado().obtenerResultadoActual(), opinionExperto.getTipoOpinion());
 		assertEquals(muestra.getEstado().getClass(), estadoEsperado.getClass());
 	}

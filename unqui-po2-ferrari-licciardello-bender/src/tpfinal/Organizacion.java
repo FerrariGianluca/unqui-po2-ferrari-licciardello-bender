@@ -1,13 +1,13 @@
 package tpfinal;
 
-public class Organizacion {
+public class Organizacion implements Observador{
 	private Ubicacion ubicacion;
 	private int trabajadores;
 	private TipoDeOrganizacion tipo;
 	private FuncionalidadExterna funMuestraValidada;
 	private FuncionalidadExterna funMuestraCargada;
 	
-	public Organizacion(Ubicacion ubi, int cantTrab, TipoDeOrganizacion tipo) {
+	public Organizacion(Ubicacion ubi, int cantTrab, TipoDeOrganizacion tipo){
 		ubicacion = ubi;
 		trabajadores = cantTrab;
 		this.tipo = tipo;

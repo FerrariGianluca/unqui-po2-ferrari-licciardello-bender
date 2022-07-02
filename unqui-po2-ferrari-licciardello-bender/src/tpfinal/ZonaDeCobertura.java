@@ -17,6 +17,7 @@ public class ZonaDeCobertura {
 			radio = r;
 			nombre = n;
 			muestras = new ArrayList<Muestra>();
+			observers = new ArrayList<Observador>();
 		}
 
 		public Ubicacion getEpicentro() {
@@ -41,6 +42,10 @@ public class ZonaDeCobertura {
 		
 		public boolean solapaConUnaZona(ZonaDeCobertura z) {
 			return this.epicentro.distanciaCon(z.getEpicentro()) <= this.radio + z.getRadio();
+		}
+		
+		public ArrayList<Observador> getObservers(){
+			return observers;
 		}
 		
 		public void agregarObserver(Observador observer) {
