@@ -22,5 +22,5 @@ class OpinionTest {
 		assertEquals(opinion.getFechaDeOpinion(), LocalDate.now());
 		assertEquals(opinion.getTipoOpinion(), TipoOpinion.ChincheFoliada);
 	}
-//
+
 }
