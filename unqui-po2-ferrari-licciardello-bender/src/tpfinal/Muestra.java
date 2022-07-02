@@ -74,6 +74,10 @@ public class Muestra {
 		return muestras.stream().anyMatch(m -> this.getUbicacion().distanciaCon(m.getUbicacion()) <= distancia);
 	}
 	
+	public ArrayList<Opinion> getOpiniones(){
+		return opiniones;
+	}
+	
 	public EstadoMuestra getEstado() {
 		return estado;
 	}
