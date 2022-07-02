@@ -27,17 +27,13 @@ class MuestraTest {
 	}
 	
 	@Test
-	public void testMuestraBienInicializada() {
+	public void testMuestraBienInicializa() {
 		assertEquals(muestra.getCantOpiniones().get(opinion.getTipoOpinion()), 1);
 		assertEquals(muestra.getCantOpiniones().get(TipoOpinion.PhtiaChinche), 0);
 		assertEquals(muestra.getFotoVinchuca(), "foto");
 		assertEquals(muestra.getResultadoActual(), opinion.getTipoOpinion());
 		assertEquals(muestra.getUbicacion(), ubicacion);
 		assertEquals(muestra.getUsuario(), usuario);
-	}
-	
-	@Test
-	public void cuandoSeInicializaUnaMuestraSuEstadoEsBasico() {
 		EstadoMuestra estado = new EstadoMuestraBasico(muestra);
 		assertEquals(muestra.getEstado().getClass(), estado.getClass());
 	}
@@ -45,15 +41,16 @@ class MuestraTest {
 	@Test
 	public void cuandoOpinaUnExpertoElEstadoDeLaMuestraEsExperto() {
 		Opinion opinionExperto = new Opinion(TipoOpinion.VinchucaGuasayana);
-		muestra.opinionExperto(opinionExperto);
+		usuario.subirCategoria();
+		usuario.opinar(muestra, opinionExperto);
 		EstadoMuestra estado = new EstadoMuestraExperto(muestra);
 		assertEquals(muestra.getEstado().getClass(), estado.getClass());
 	}
 	
 	@Test
 	public void cuandoAlguienOpinaEstaOpinionSeAgrega() {
-		muestra.agregarOpinion(opinion);
-		assertEquals(muestra.getCantOpiniones(), 2);
+		usuario.opinar(muestra, opinion);
+		assertEquals(muestra.getCantOpiniones().get(opinion.getTipoOpinion()), 2);
 	}
 	
 	@Test
@@ -70,8 +67,21 @@ class MuestraTest {
 	@Test
 	public void testResultadoActual() {
 		muestra.agregarOpinion(opinion);
-		assertEquals(muestra.getResultadoActual(), TipoOpinion.NoDefinido);
+		assertEquals(muestra.getResultadoActual(), TipoOpinion.ChincheFoliada);
 	}
 	
+	@Test
+	public void cuandoDosExpertosCoincidenLaMuestraSeVerifica() {
+		Opinion opinionExperto = new Opinion(TipoOpinion.VinchucaSordida);
+		EstadoMuestra estadoEsperado = new EstadoMuestraCerrado(muestra, TipoOpinion.ChincheFoliada);
+		Usuario experto1 = new Usuario();
+		Usuario experto2 = new Usuario();
+		experto1.subirCategoria();
+		experto2.subirCategoria();
+		experto1.opinar(muestra, opinionExperto);
+		experto2.opinar(muestra, opinionExperto);
+		assertEquals(muestra.getEstado().obtenerResultadoActual(), opinionExperto.getTipoOpinion());
+		assertEquals(muestra.getEstado().getClass(), estadoEsperado.getClass());
+	}
 	
 }

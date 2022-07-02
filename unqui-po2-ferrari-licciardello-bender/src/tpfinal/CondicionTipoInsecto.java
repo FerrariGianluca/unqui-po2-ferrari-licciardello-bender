@@ -2,10 +2,10 @@ package tpfinal;
 
 public class CondicionTipoInsecto implements Filtro{
 
-	private Opinion tipo;
+	private TipoOpinion tipo;
 	private Muestra muestra;
 	
-	public CondicionTipoInsecto(Opinion tipo, Muestra muestra) {
+	public CondicionTipoInsecto(TipoOpinion tipo, Muestra muestra) {
 		this.tipo = tipo;
 		this.muestra = muestra;
 	}

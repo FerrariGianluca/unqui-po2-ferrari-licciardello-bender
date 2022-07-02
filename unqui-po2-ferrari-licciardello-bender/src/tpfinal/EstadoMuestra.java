@@ -16,4 +16,7 @@ public abstract class EstadoMuestra {
 	
 	public abstract TipoOpinion obtenerResultadoActual();
 	
+	public boolean puedeOpinarUnUsuarioBasico() {
+		return false;
+	}
 }

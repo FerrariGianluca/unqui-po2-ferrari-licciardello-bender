@@ -13,7 +13,7 @@ public class CondicionUltimaVotacion implements Filtro{
 	}
 	
 	public boolean cumpleCon(Muestra muestra) {
-		return this.muestra.getOpiniones().get(muestra.getOpiniones().size()).getFechaDeOpinion().isAfter(fecha);
+		return this.muestra.getOpiniones().get(muestra.getOpiniones().size()-1).getFechaDeOpinion().isAfter(fecha);
 	}
 	
 }

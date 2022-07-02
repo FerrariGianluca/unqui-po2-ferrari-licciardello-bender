@@ -1,40 +1,49 @@
 package tpfinal;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.EnumMap;
 
 public class EstadoMuestraExperto extends EstadoMuestra{
 	
 	private int cantOpiniones = 0;
-	private TipoOpinion opActual;
-	private Map<TipoOpinion, Integer> opinionesExperto;
+	private EnumMap<TipoOpinion, Integer> cantOpExperto;
+	private ArrayList<Opinion> opinionesExperto;
+	
+	private EnumMap<TipoOpinion, Integer> cantidadDeOpiniones(){
+		cantOpExperto = new EnumMap<>(TipoOpinion.class);
+		cantOpExperto.put(TipoOpinion.VinchucaGuasayana, 0);
+		cantOpExperto.put(TipoOpinion.VinchucaInfestans, 0);
+		cantOpExperto.put(TipoOpinion.VinchucaSordida, 0);
+		cantOpExperto.put(TipoOpinion.PhtiaChinche, 0);
+		cantOpExperto.put(TipoOpinion.ChincheFoliada, 0);
+		cantOpExperto.put(TipoOpinion.ImagenPocoClara, 0);
+		cantOpExperto.put(TipoOpinion.Ninguna, 0);
+		for (Opinion o : opinionesExperto) {
+			cantOpExperto.put(o.getTipoOpinion(), cantOpExperto.get(o.getTipoOpinion()) + 1);
+		}
+		return cantOpExperto;
+	}
 	
 	public EstadoMuestraExperto(Muestra muestra) {
 		super(muestra);
-		this.opinionesExperto = new HashMap<TipoOpinion, Integer>();
-		opinionesExperto.put(TipoOpinion.VinchucaGuasayana, 0);
-		opinionesExperto.put(TipoOpinion.VinchucaInfestans, 0);
-		opinionesExperto.put(TipoOpinion.VinchucaSordida, 0);
-		opinionesExperto.put(TipoOpinion.PhtiaChinche, 0);
-		opinionesExperto.put(TipoOpinion.ChincheFoliada, 0);
-		opinionesExperto.put(TipoOpinion.ImagenPocoClara, 0);
-		opinionesExperto.put(TipoOpinion.Ninguna, 0);
+		this.opinionesExperto = new ArrayList<>();
+		this.cantOpExperto = cantidadDeOpiniones();
 	}
 	
 	public void manejarOpinion(Opinion opinion) {
-		if (opinionesExperto.get(opinion.getTipoOpinion()) == 1) {
+		if (cantOpExperto.get(opinion.getTipoOpinion()) > 0) {
 			getMuestra().setEstado(new EstadoMuestraCerrado(getMuestra(), opinion.getTipoOpinion()));
 		} else {
-			opinionesExperto.putIfAbsent(opActual, opinionesExperto.get(opinion.getTipoOpinion()) + 1);
+			cantOpExperto.put(opinion.getTipoOpinion(), cantOpExperto.get(opinion.getTipoOpinion()) + 1);
 			cantOpiniones += 1;
-			opActual = opinion.getTipoOpinion();
 		}
+		opinionesExperto.add(opinion);
 		getMuestra().agregarOpinion(opinion);
 	}
 	
 	public TipoOpinion obtenerResultadoActual() {
-		if (cantOpiniones == 0) {
-			return opActual;
+		if (cantOpiniones == 1) {
+			return opinionesExperto.get(cantOpiniones - 1).getTipoOpinion();
 		} else {
 			return TipoOpinion.NoDefinido;
 		}

@@ -23,6 +23,10 @@ public class AppVinchuca{
 		zonas.forEach(o -> o.update(muestra));
 	}
 	
+	public void agregarZona(ZonaDeCobertura zona) {
+		zonas.add(zona);
+	}
+	
 	public void agregarUsuario(Usuario usuario) {
 		usuarios.add(usuario);
 	}
@@ -37,7 +41,7 @@ public class AppVinchuca{
 		return usuario.getMuestrasEnviadas().stream().filter(o -> ChronoUnit.DAYS.between(o.getFechaDeEnvio(), fechaDeHoy) <= 30).count();
 	}
 	
-	public void verificarCategoria(Usuario usuario) {
+	public void actualizarCategoria(Usuario usuario) {
 		if (cantOpinionesEnLosUltimos30Dias(usuario) >= 10 &&
 			cantMuestrasEnviadasEnLosUltimos30Dias(usuario) >= 20) {
 			usuario.subirCategoria();
@@ -54,16 +58,8 @@ public class AppVinchuca{
 		return muestras;
 	}
 
-	public void setMuestras(List<Muestra> muestras) {
-		this.muestras = muestras;
-	}
-
 	public List<Usuario> getUsuarios() {
 		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
 	}
 
 	public List<ZonaDeCobertura> getZonas() {

@@ -12,6 +12,11 @@ public class Opinion{
 		this.opinion = opinion;
 	}
 	
+	public Opinion(TipoOpinion opinion, LocalDate fecha) {
+		this.fechaDeOpinion = fecha;
+		this.opinion = opinion;
+	}
+	
 	public LocalDate getFechaDeOpinion() {
 		return fechaDeOpinion;
 	}

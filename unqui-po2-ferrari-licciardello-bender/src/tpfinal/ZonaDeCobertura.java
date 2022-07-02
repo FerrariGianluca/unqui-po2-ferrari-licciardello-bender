@@ -23,34 +23,18 @@ public class ZonaDeCobertura {
 			return epicentro;
 		}
 
-		public void setEpicentro(Ubicacion epicentro) {
-			this.epicentro = epicentro;
-		}
-
 		public double getRadio() {
 			return radio;
-		}
-
-		public void setRadio(double radio) {
-			this.radio = radio;
 		}
 
 		public String getNombre() {
 			return nombre;
 		}
 
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-
 		public List<Muestra> getMuestras() {
 			return muestras;
 		}
 
-		public void setMuestras(List<Muestra> muestras) {
-			this.muestras = muestras;
-		}
-		
 		public List<ZonaDeCobertura> zonasQueSolapan(ArrayList<ZonaDeCobertura> zonas){
 			return zonas.stream().filter(z -> z.solapaConUnaZona(this)).collect(Collectors.toList());
 		}

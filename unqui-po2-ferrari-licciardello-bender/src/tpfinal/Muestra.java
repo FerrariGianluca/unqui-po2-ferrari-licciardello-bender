@@ -15,8 +15,30 @@ public class Muestra {
 	private EstadoMuestra estado;
 	private LocalDate fechaDeEnvio;
 	private EnumMap<TipoOpinion, Integer> cantOpiniones;
-	//private Map<TipoOpinion, Integer> cantOpiniones;
 	private ArrayList<Opinion> opiniones;
+	
+	//resultadoActual se inicializa con la opinion del usuario que sube la muestra
+	public Muestra(Opinion opinionInicial, String fotoVinchuca, Ubicacion ubicacion, Usuario usuario) {
+		this.fotoVinchuca = fotoVinchuca;
+		this.ubicacion = ubicacion;
+		this.usuario = usuario;
+		this.estado = new EstadoMuestraBasico(this);
+		this.opiniones = new ArrayList<>();
+		opiniones.add(opinionInicial);
+		this.cantOpiniones = cantidadDeOpiniones();
+		this.fechaDeEnvio = LocalDate.now();
+	}
+	
+	public Muestra(Opinion opinionInicial, String fotoVinchuca, Ubicacion ubicacion, Usuario usuario, LocalDate fecha) {
+		this.fotoVinchuca = fotoVinchuca;
+		this.ubicacion = ubicacion;
+		this.usuario = usuario;
+		this.estado = new EstadoMuestraBasico(this);
+		this.opiniones = new ArrayList<>();
+		opiniones.add(opinionInicial);
+		this.cantOpiniones = cantidadDeOpiniones();
+		this.fechaDeEnvio = fecha;
+	}
 	
 	private EnumMap<TipoOpinion, Integer> cantidadDeOpiniones(){
 		cantOpiniones = new EnumMap<>(TipoOpinion.class);
@@ -33,29 +55,25 @@ public class Muestra {
 		return cantOpiniones;
 	}
 	
-	//resultadoActual se inicializa con la opinion del usuario que sube la muestra
-	public Muestra(Opinion opinionInicial, String fotoVinchuca, Ubicacion ubicacion, Usuario usuario) {
-		this.fotoVinchuca = fotoVinchuca;
-		this.ubicacion = ubicacion;
-		this.usuario = usuario;
-		this.estado = new EstadoMuestraBasico(this);
-		this.cantOpiniones = cantidadDeOpiniones();
-		this.fechaDeEnvio = LocalDate.now();
-		this.opiniones = new ArrayList<>();
-		agregarOpinion(opinionInicial);
+	public boolean puedeOpinarUnUsuarioBasico() {
+		return estado.puedeOpinarUnUsuarioBasico();
+	}
+	
+	public ArrayList<Opinion> getOpiniones() {
+		return opiniones;
 	}
 	
 	public EnumMap<TipoOpinion, Integer> getCantOpiniones() {
-		return cantOpiniones;
+		return cantidadDeOpiniones();
 	}
 
 	public void agregarOpinion(Opinion opinion) {
 		opiniones.add(opinion);
 	}
 
-	public void opinionExperto(Opinion opinion){
+/*	public void opinionExperto(Opinion opinion){
 		EstadoMuestra estado = new EstadoMuestraExperto(this);
-		if (estado.getClass().toString().equals(estado.toString())) {
+		if (this.estado.getClass().toString().equals(estado.getClass().toString())) {
 			estado.manejarOpinion(opinion);
 		} else {
 			setEstado(estado);
@@ -65,17 +83,15 @@ public class Muestra {
 	
 	public void opinionBasico(Opinion opinion) {
 		EstadoMuestra estado = new EstadoMuestraBasico(this);
-		if (estado.getClass().toString().equals(estado.toString())) {
+		if (this.estado.getClass().toString().equals(estado.getClass().toString())) {
 			estado.manejarOpinion(opinion);
+		} else {
+			System.out.println("No podes opinar sobre una muestra en la que ya opinó un experto");
 		}
-	}
+	}*/
 	
 	public boolean tieneAlgunaMuestraAMenosDe(List<Muestra> muestras, double distancia) {
 		return muestras.stream().anyMatch(m -> this.getUbicacion().distanciaCon(m.getUbicacion()) <= distancia);
-	}
-	
-	public ArrayList<Opinion> getOpiniones(){
-		return opiniones;
 	}
 	
 	public EstadoMuestra getEstado() {

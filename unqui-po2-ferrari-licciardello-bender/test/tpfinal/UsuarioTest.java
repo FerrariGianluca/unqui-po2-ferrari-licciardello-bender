@@ -34,7 +34,7 @@ class UsuarioTest {
 
 	}
 	@Test
-	void OpinarTest() {
+	void CuandoUnUsuarioBasicoOpinaEnUnaMuestraBasicaSuOpinionCuenta() {
 		Usuario usuario1 = new Usuario() ;
 		Ubicacion ubicacion = new Ubicacion("Lanus", 3,5);
 		Opinion op = new Opinion(TipoOpinion.ChincheFoliada);
@@ -44,6 +44,24 @@ class UsuarioTest {
 		assertEquals(muestra.getCantOpiniones().get(TipoOpinion.ChincheFoliada), 2);
 		assertEquals(usuario.getOpiniones().size(), 1);
 	}
+	
+	/*@Test
+	void CuandoUnUsuarioExpertoOpinaEnUnaMuestraBasicaEstaCambiaDeEstado() {
+		Usuario usuario1 = new Usuario();
+		Usuario usuario2 = new Usuario();
+		Usuario usuario3 = new Usuario();
+		usuario3.subirCategoria();
+		Ubicacion ubicacion = new Ubicacion("Lanus", 3,5);
+		Opinion op1 = new Opinion(TipoOpinion.ChincheFoliada);
+		Opinion op2 = new Opinion(TipoOpinion.PhtiaChinche);
+		Muestra muestra = new Muestra(op1, "Foto", ubicacion, usuario);
+		EstadoMuestra estadoEsperado = new EstadoMuestraExperto(muestra);
+		usuario1.opinar(muestra, op1);
+		usuario2.opinar(muestra, op1);
+		usuario3.opinar(muestra, op2);
+		assertEquals(muestra.getResultadoActual(), TipoOpinion.PhtiaChinche);
+		assertEquals(muestra.getEstado().getClass(), estadoEsperado);
+	}*/
 	
 	@Test
 	void EnviarMuestraTest() {

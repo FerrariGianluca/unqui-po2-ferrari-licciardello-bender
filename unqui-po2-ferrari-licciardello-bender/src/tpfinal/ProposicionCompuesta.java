@@ -23,9 +23,5 @@ public abstract class ProposicionCompuesta implements Filtro{
 	public ArrayList<Filtro> getFiltros() {
 		return filtros;
 	}
-
-	public void setFiltros(ArrayList<Filtro> filtros) {
-		this.filtros = filtros;
-	}
 	
 }
