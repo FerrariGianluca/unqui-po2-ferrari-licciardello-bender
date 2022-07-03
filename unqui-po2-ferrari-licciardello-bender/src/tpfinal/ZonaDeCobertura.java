@@ -56,12 +56,12 @@ public class ZonaDeCobertura {
 			observers.remove(observer);
 		}
 		
-		public void notifyNuevaMuestra() {
-			this.observers.forEach(o -> o.updateNuevaMuestra(this));
+		public void notifyNuevaMuestra(Muestra m) {
+			this.observers.forEach(o -> o.updateNuevaMuestra(this, m));
 		}
 		
-		public void notifyMuestraValidada() {
-			this.observers.forEach(o -> o.updateMuestraValidada(this));
+		public void notifyMuestraValidada(Muestra m) {
+			this.observers.forEach(o -> o.updateMuestraValidada(this, m));
 		}
 		
 		public void update(Muestra muestra){

@@ -1,6 +1,6 @@
 package tpfinal;
 
 public interface Observador {
-	public void updateNuevaMuestra(ZonaDeCobertura z);
-	public void updateMuestraValidada(ZonaDeCobertura z);
+	public void updateNuevaMuestra(ZonaDeCobertura z, Muestra m);
+	public void updateMuestraValidada(ZonaDeCobertura z, Muestra m);
 }

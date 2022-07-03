@@ -8,7 +8,8 @@ import java.util.List;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import org.mockito.InOrder;
+import static org.mockito.Mockito.*;
 import tpfinal.Organizacion.TipoDeOrganizacion;
 
 class ZonaDeCoberturaTest {
@@ -20,6 +21,7 @@ class ZonaDeCoberturaTest {
 	private ZonaDeCobertura zona2;
 	private Observador org1;
 	private Observador org2;
+	private Muestra muestra;
 	
 	@BeforeEach
 	public void setUp() throws Exception{
@@ -29,10 +31,11 @@ class ZonaDeCoberturaTest {
 		zona1 = new ZonaDeCobertura(epicentro, radio, nombre);
 		org1 = new Organizacion(epicentro, 10, TipoDeOrganizacion.Cultural);
 		org2 = new Organizacion(epicentro, 15, TipoDeOrganizacion.Educativa);
+		muestra = mock(Muestra.class);
 	}
 	
 	@Test
-	public void testMuestraBienInicializa() {
+	public void testZonaBienInicializada() {
 		assertEquals(zona1.getEpicentro(), epicentro);
 		assertEquals(zona1.getNombre(), nombre);
 		assertEquals(zona1.getRadio(), radio);
@@ -59,6 +62,19 @@ class ZonaDeCoberturaTest {
 		assertEquals(zona1.getObservers().size(), 2);
 		zona1.sacarObserver(org1);
 		assertEquals(zona1.getObservers().size(), 1);
+	}
+	
+	@Test
+	public void notifyTest() {
+		Organizacion org = mock(Organizacion.class);
+		FuncionalidadExterna muestraValidada = mock(FuncionalidadExterna.class);
+		FuncionalidadExterna nuevaMuestra = mock(FuncionalidadExterna.class);
+		org.setFunMuestraValidada(muestraValidada);
+		org.setFunNuevaMuestra(nuevaMuestra);
+		zona1.agregarObserver(org);
+		zona1.notifyNuevaMuestra(muestra);
+		zona1.notifyMuestraValidada(muestra);
+		verify(org, times(1)).updateNuevaMuestra(zona1, muestra);
 	}
 	
 }

@@ -17,11 +17,19 @@ public class Organizacion implements Observador{
 		Salud, Educativa, Cultural, Asistencia
 	}
 	
-	public void updateNuevaMuestra(ZonaDeCobertura z) {
-		funMuestraCargada.nuevoEvento(this);
+	public void updateNuevaMuestra(ZonaDeCobertura z, Muestra m) {
+		funMuestraCargada.nuevoEvento(this, z, m);
 	}
 	
-	public void updateMuestraValidada(ZonaDeCobertura z) {
-		funMuestraValidada.nuevoEvento(this);
+	public void updateMuestraValidada(ZonaDeCobertura z, Muestra m) {
+		funMuestraValidada.nuevoEvento(this, z, m);
+	}
+	
+	public void setFunMuestraValidada(FuncionalidadExterna f){
+		funMuestraValidada = f;
+	}
+	
+	public void setFunNuevaMuestra(FuncionalidadExterna f){
+		funMuestraCargada = f;
 	}
 }
